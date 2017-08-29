@@ -41,9 +41,9 @@
           let path = characters[i].thumbnail.path;
           let extension = characters[i].thumbnail.extension;
           let superHeroName = characters[i].name;
-          let newImage = "<img src="+path+"."+extension+" width=\"250\" height=\"250\" />";
+          let newImage = "<img src="+path+"."+extension+" width=\"350\" height=\"200\" />";
           heroArray[i] = {imgPath: newImage, heroName: superHeroName };
-          $("#herocard").append("<div class=\"col-xs-6 col-sm-4 col-lg-3\"><div class=\"thumbnail \">"+
+          $("#herocard").append("<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"thumbnail \">"+
           heroArray[i].imgPath+
           "<div class=\"caption\"><h3>"+
           heroArray[i].heroName
