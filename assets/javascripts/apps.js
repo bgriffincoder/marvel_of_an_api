@@ -3,6 +3,7 @@
 
     //assign ID element of submit button
     let searchButton = $("#searchBtn");
+    let heroCards = $("#herocard");
     //search value from box
     let searchValue = "";
     //api credential url
@@ -41,19 +42,30 @@
           let path = characters[i].thumbnail.path;
           let extension = characters[i].thumbnail.extension;
           let superHeroName = characters[i].name;
-          let newImage = "<img src="+path+"."+extension+" width=\"350\" height=\"200\" />";
+          //let newImage = "<img src="+path+"."+extension+" width=\"350\" height=\"200\" />";
+          let newImage = `<img src="${path}.${extension}" width="350" height="200" />`;
           heroArray[i] = {imgPath: newImage, heroName: superHeroName };
-          $("#herocard").append("<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"thumbnail \">"+
-          heroArray[i].imgPath+
-          "<div class=\"caption\"><h3>"+
-          heroArray[i].heroName
-          +"</h2></div><!-- /.caption --></div><!-- /.thumbnail --></div> ");
+          $("#herocard").append(`
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                <div class="thumbnail">
+                  ${heroArray[i].imgPath}
+                  <div class="caption">
+                  <h3>${heroArray[i].heroName}</h3>
+                  </div><!-- /.caption -->
+                </div><!-- /.thumbnail -->
+              </div>
+            `)
+          // $("#herocard").append("<div class=\"col-lg-3 col-md-3 col-sm-3 col-xs-6\"><div class=\"thumbnail \">"+
+          // heroArray[i].imgPath+
+          // "<div class=\"caption\"><h3>"+
+          // heroArray[i].heroName
+          // +"</h2></div><!-- /.caption --></div><!-- /.thumbnail --></div> ");
         }
       })
     }
 
     retrieveCharacters(myUrl);
-    
+
     searchButton.click(function(e){
       searchValue = $("#searchMarvel").val();
       if(searchValue == "") {
@@ -65,6 +77,7 @@
         searchValue = $("#searchMarvel").val();
         //add query parameter to api credential url
         addQSParm("nameStartsWith", searchValue);
+        heroCards.html("");
         retrieveCharacters(myUrl);
       }
 
