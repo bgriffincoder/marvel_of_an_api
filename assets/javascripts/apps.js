@@ -52,16 +52,22 @@
       })
     }
 
+    retrieveCharacters(myUrl);
+    
     searchButton.click(function(e){
-      //stops form button from submitting data
-      e.preventDefault();
-      //grab input answer
       searchValue = $("#searchMarvel").val();
-      //add query parameter to api credential url
-      addQSParm("nameStartsWith", searchValue);
-      retrieveCharacters(myUrl);
-      //console.log(myUrl);
-      //$("#characters").append(myUrl);
+      if(searchValue == "") {
+        retrieveCharacters(myUrl);
+      } else {
+        //stops form button from submitting data
+        e.preventDefault();
+        //grab input answer
+        searchValue = $("#searchMarvel").val();
+        //add query parameter to api credential url
+        addQSParm("nameStartsWith", searchValue);
+        retrieveCharacters(myUrl);
+      }
+
     });
 
   });//end of document ready function
